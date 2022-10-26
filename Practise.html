@@ -1,0 +1,41 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+ <title>Body Tag</title>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js">
+ </script>  
+</head>  
+<body>  
+ <h2>Flags of all countries</h2>
+</body>
+<script>
+    //compare two json objects
+    var obj1 = {
+        "name" : "Person 1",
+        "age" : 5
+    }
+    var obj2 = {
+        "age": 5,
+        "name" : "Person 1",
+    }
+    console.log(_.isEqual(obj1, obj2));
+    // Display all countries flags in console.log
+    fetch('https://restcountries.com/v3.1/all')
+  .then((response) => response.json())
+  .then((data) => data.forEach(function(flag){
+    console.log(flag.flags.png)
+  }));
+
+  // Display all countries names,regions,sub-region and population
+  fetch('https://restcountries.com/v3.1/all')
+  .then((response) => response.json())
+  .then((data) => data.forEach(function(data){
+    console.log({
+        country_name : data.name.common,
+        regions : data.region,
+        sub_regions : data.subregion,
+        population : data.population
+    })
+  }));
+</script>
+</html>  
